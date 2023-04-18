@@ -54,20 +54,33 @@ const options = {
     console.log(selectedDates[0]);
   },
 };
+// const date = () => {
+//   clearInterval(interval);
+//   daysSpan.textContent = '00';
+//   hoursSpan.textContent = '00';
+//   minutesSpan.textContent = '00';
+//   secondsSpan.textContent = '00';
+// };
 
 const loadDate = () => {
-  interval = () => {
-    const date = inputEl.value;
-    const SelectData = new Date(date).getTime();
-    console.log(SelectData);
-    const localData = new Date().getTime();
-    const outputDate = convertMs(SelectData - localData);
-    console.log(outputDate);
-    daysSpan.textContent = addLeadingZero(outputDate.days);
-    hoursSpan.textContent = addLeadingZero(outputDate.hours);
-    minutesSpan.textContent = addLeadingZero(outputDate.minutes);
-    secondsSpan.textContent = addLeadingZero(outputDate.seconds);
-  };
+  const date = inputEl.value;
+  const SelectData = new Date(date).getTime();
+  console.log(SelectData);
+  const localData = new Date().getTime();
+  const outputDate = convertMs(SelectData - localData);
+  console.log(outputDate);
+  daysSpan.textContent = addLeadingZero(outputDate.days);
+  hoursSpan.textContent = addLeadingZero(outputDate.hours);
+  minutesSpan.textContent = addLeadingZero(outputDate.minutes);
+  secondsSpan.textContent = addLeadingZero(outputDate.seconds);
+  console.log(secondsSpan.textContent);
+  if (secondsSpan.textContent <= 0) {
+    clearInterval(interval);
+    Notiflix.Report.success('Success', 'Your time is over', 'ok', {
+      width: '360px',
+      svgSize: '120px',
+    });
+  }
 };
 
 flatpickr(inputEl, options);
@@ -82,5 +95,4 @@ const addLeadingZero = value => {
 btnEL.addEventListener('click', () => {
   btnEL.disabled = true;
   interval = setInterval(() => loadDate(), 1000);
-  clearInterval(interval);
 });
