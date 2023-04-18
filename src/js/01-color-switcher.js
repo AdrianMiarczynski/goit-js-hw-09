@@ -1,7 +1,6 @@
 const btnElStart = document.querySelector('button[data-start]');
 const btnElStop = document.querySelector('button[data-stop]');
 btnElStop.disabled = true;
-
 let interval;
 
 const onClick = () => {
