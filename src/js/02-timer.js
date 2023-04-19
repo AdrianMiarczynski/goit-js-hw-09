@@ -74,7 +74,7 @@ const loadDate = () => {
   minutesSpan.textContent = addLeadingZero(outputDate.minutes);
   secondsSpan.textContent = addLeadingZero(outputDate.seconds);
   console.log(secondsSpan.textContent);
-  if ((secondsSpan.textContent = 0)) {
+  if ((secondsSpan.textContent < 0)) {
     clearInterval(interval);
     Notiflix.Report.success('Success', 'Your time is over', 'ok', {
       width: '360px',
