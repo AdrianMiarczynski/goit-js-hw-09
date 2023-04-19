@@ -37,7 +37,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    if (selectedDates[0] < new Date()) {
+    if (selectedDates[0].getTime() < new Date().getTime()) {
       // return window.alert('Please choose a date in the future');
       // return Notiflix.Notify.failure('Please choose a date in the future');
       return Notiflix.Report.failure(
@@ -74,7 +74,7 @@ const loadDate = () => {
   minutesSpan.textContent = addLeadingZero(outputDate.minutes);
   secondsSpan.textContent = addLeadingZero(outputDate.seconds);
   console.log(secondsSpan.textContent);
-  if (secondsSpan.textContent <= 0) {
+  if (secondsSpan.textContent === 0) {
     clearInterval(interval);
     Notiflix.Report.success('Success', 'Your time is over', 'ok', {
       width: '360px',
