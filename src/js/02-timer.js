@@ -54,14 +54,6 @@ const options = {
     console.log(selectedDates[0]);
   },
 };
-// const date = () => {
-//   clearInterval(interval);
-//   daysSpan.textContent = '00';
-//   hoursSpan.textContent = '00';
-//   minutesSpan.textContent = '00';
-//   secondsSpan.textContent = '00';
-// };
-
 const loadDate = () => {
   const date = inputEl.value;
   const SelectData = new Date(date).getTime();
@@ -73,9 +65,15 @@ const loadDate = () => {
   hoursSpan.textContent = addLeadingZero(outputDate.hours);
   minutesSpan.textContent = addLeadingZero(outputDate.minutes);
   secondsSpan.textContent = addLeadingZero(outputDate.seconds);
-  console.log(secondsSpan.textContent);
-  if ((secondsSpan.textContent <= 0)) {
-    clearInterval(interval);
+  if (outputDate.seconds < 0) {
+    const date = () => {
+      clearInterval(interval);
+      daysSpan.textContent = '00';
+      hoursSpan.textContent = '00';
+      minutesSpan.textContent = '00';
+      secondsSpan.textContent = '00';
+    };
+    date();
     Notiflix.Report.success('Success', 'Your time is over', 'ok', {
       width: '360px',
       svgSize: '120px',
